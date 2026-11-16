@@ -64,13 +64,15 @@ Follow [data/raw/README.md](data/raw/README.md). You should end up with `data/ra
 ```bash
 jupyter notebook
 ```
-Open `notebooks/01_data_inspection.ipynb` and click **Kernel → Restart & Run All**.
+Run these in order (open each one, then **Kernel → Restart & Run All**):
+1. `notebooks/01_data_inspection.ipynb`: looks at the raw data
+2. `notebooks/02_data_cleaning_eda.ipynb`: cleans the data, does EDA, and writes `data/cleaned/*.csv`
 
 ## Project Phases
 
 - [x] Phase 1 – Project Introduction ([docs/phase1_introduction.md](docs/phase1_introduction.md))
 - [x] Phase 2 – Dataset Collection ([docs/phase2_dataset_guide.md](docs/phase2_dataset_guide.md))
-- [ ] Phase 3 – Python Data Cleaning & EDA
+- [x] Phase 3 – Python Data Cleaning & EDA ([docs/phase3_data_cleaning.md](docs/phase3_data_cleaning.md))
 - [ ] Phase 4 – MySQL Database & SQL Queries
 - [ ] Phase 5 – Power BI Dashboard
 - [ ] Phase 6 – Insights
