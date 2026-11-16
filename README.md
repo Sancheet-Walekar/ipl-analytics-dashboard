@@ -78,13 +78,19 @@ Run these in order (open each one, then **Kernel → Restart & Run All**):
 
 Details: [docs/phase4_mysql.md](docs/phase4_mysql.md)
 
+### 7. Open the Power BI dashboard (Windows only)
+1. Install Power BI Desktop (Microsoft Store) and MySQL Connector/NET.
+2. Open `powerbi/IPL_Dashboard.pbix` → **Home → Refresh** (enter your MySQL password when asked).
+
+To build it yourself, follow [docs/phase5_powerbi.md](docs/phase5_powerbi.md).
+
 ## Project Phases
 
 - [x] Phase 1 – Project Introduction ([docs/phase1_introduction.md](docs/phase1_introduction.md))
 - [x] Phase 2 – Dataset Collection ([docs/phase2_dataset_guide.md](docs/phase2_dataset_guide.md))
 - [x] Phase 3 – Python Data Cleaning & EDA ([docs/phase3_data_cleaning.md](docs/phase3_data_cleaning.md))
 - [x] Phase 4 – MySQL Database & SQL Queries ([docs/phase4_mysql.md](docs/phase4_mysql.md))
-- [ ] Phase 5 – Power BI Dashboard
+- [x] Phase 5 – Power BI Dashboard guide ([docs/phase5_powerbi.md](docs/phase5_powerbi.md)); `.pbix` to be added after building
 - [ ] Phase 6 – Insights
 - [ ] Phase 7 – Project Report
 - [ ] Phase 8 – Interview Preparation
