@@ -84,6 +84,8 @@ Details: [docs/phase4_mysql.md](docs/phase4_mysql.md)
 
 To build it yourself, follow [docs/phase5_powerbi.md](docs/phase5_powerbi.md).
 
+**No Windows?** Run `python scripts/export_for_powerbi.py` to export the MySQL tables to one Excel workbook, then follow [docs/phase5_powerbi_web.md](docs/phase5_powerbi_web.md) to build the dashboard at app.powerbi.com. A PDF export of the dashboard is in `powerbi/`.
+
 ## Project Phases
 
 - [x] Phase 1 – Project Introduction ([docs/phase1_introduction.md](docs/phase1_introduction.md))

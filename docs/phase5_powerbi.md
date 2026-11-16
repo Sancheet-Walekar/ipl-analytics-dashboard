@@ -3,7 +3,7 @@
 **Goal:** a 3-page interactive dashboard: **IPL Overview**, **Player Performance** and **Match Analysis**.
 **Save your file as:** `powerbi/IPL_Dashboard.pbix`
 
-> Power BI Desktop runs **only on Windows** (10/11). Use your own Windows PC or one in the college lab.
+> Power BI Desktop runs **only on Windows** (10/11). **No Windows?** Follow [phase5_powerbi_web.md](phase5_powerbi_web.md) to build the same dashboard in the browser with a college account. It uses the DAX and layouts from this guide.
 
 ---
 

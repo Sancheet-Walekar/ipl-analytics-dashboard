@@ -4,3 +4,4 @@ notebook>=7.0
 matplotlib>=3.7
 mysql-connector-python>=8.0
 sqlalchemy>=2.0
+xlsxwriter>=3.0
