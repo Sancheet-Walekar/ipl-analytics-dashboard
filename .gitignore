@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+.ipynb_checkpoints/
+
+# Secrets — never commit passwords or tokens
+.env
+*.env
+config.ini
+
+# Raw dataset (large; downloaded from Kaggle — see data/raw/README.md)
+data/raw/*.csv
+data/raw/*.zip
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+~$*
