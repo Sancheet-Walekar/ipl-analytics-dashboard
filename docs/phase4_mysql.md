@@ -218,3 +218,46 @@ Q13 leaves out ties and no-results (`WHERE winner IS NOT NULL AND result <> 'tie
 | `ModuleNotFoundError: mysql` | Connector not installed | `pip install mysql-connector-python` |
 | Python script: `File not found ... matches_cleaned.csv` | Phase 3 notebook not run | Run `notebooks/02_data_cleaning_eda.ipynb` first |
 | Workbench shows only 1000 rows | Default display limit | Not an error; change *Limit to 1000 rows* in the toolbar |
+
+---
+
+## No MySQL Workbench? Use the command line instead
+Workbench is only an editor. Everything in this phase also works from the terminal with the `mysql` command.
+
+### Linux (Ubuntu)
+On Ubuntu, MySQL's `root` user logs in through `sudo`, not a password. The Python loader needs a password, so create a project user once:
+```bash
+sudo mysql
+```
+```sql
+CREATE USER 'ipl_user'@'localhost' IDENTIFIED BY 'Choose_A_Password1';
+GRANT ALL PRIVILEGES ON ipl_db.* TO 'ipl_user'@'localhost';
+EXIT;
+```
+Then, from the project folder:
+```bash
+mysql -u ipl_user -p < sql/01_create_database.sql          # Step 3: create the tables
+MYSQL_USER=ipl_user python scripts/load_to_mysql.py         # Step 4: load the data
+mysql -u ipl_user -p ipl_db --table                         # Step 6: open a SQL prompt
+```
+At the `mysql>` prompt, paste any query from `sql/03_analysis_queries.sql` (it must end with `;`) and press Enter. Type `exit` to leave.
+To run all 26 queries at once: `mysql -u ipl_user -p --table < sql/03_analysis_queries.sql | less` (press `q` to quit).
+
+### Windows
+1. Start menu → **MySQL 8.0 Command Line Client** → enter your root password.
+2. Run a file with `source` (use forward slashes):
+   ```
+   source C:/Users/YourName/ipl-analytics-dashboard/sql/01_create_database.sql
+   ```
+3. Load the data as normal: `python scripts/load_to_mysql.py`.
+4. Type `USE ipl_db;` and paste queries.
+
+### Command-line tips
+| Command | Meaning |
+|---|---|
+| `SHOW DATABASES;` | List databases |
+| `USE ipl_db;` | Switch to our database |
+| `SHOW TABLES;` | List tables |
+| `DESCRIBE matches;` | Show a table's columns and types |
+| `\G` instead of `;` | Show a wide row vertically (easier to read) |
+| `Ctrl + C` | Cancel a half-typed query |
