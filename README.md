@@ -48,6 +48,8 @@ cd ipl-analytics-dashboard
 ```
 
 ### 3. Create a virtual environment and install the libraries
+> **Linux/macOS:** type `python3` instead of `python` for the first command. On Ubuntu, run `sudo apt install python3-venv` first. After the venv is activated, `python` works everywhere.
+
 ```bash
 python -m venv venv
 # Windows:
