@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>IPL Dashboard Preview</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Power BI-style report canvas — header bar, page tabs, 16:9-ish grid of visual tiles */
+:root{
+  --bg:#eef0f4; --tile:#ffffff; --fg:#1d2330; --muted:#5d6676; --line:#dde1e8;
+  --accent:#1f5fbf; --accent2:#e8792b; --grey:#a9b1be; --head:#16233a; --headfg:#ffffff;
+  --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --tile:#1b212b; --fg:#e7ebf1; --muted:#9aa4b3; --line:#2c3440;
+  --accent:#5b93e8; --accent2:#f0955a; --grey:#5c6676; --head:#0b1220; --headfg:#e7ebf1; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --tile:#1b212b; --fg:#e7ebf1; --muted:#9aa4b3; --line:#2c3440;
+  --accent:#5b93e8; --accent2:#f0955a; --grey:#5c6676; --head:#0b1220; --headfg:#e7ebf1; color-scheme:dark}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.note{font-size:13px;color:var(--muted)}
+.head{background:var(--head);color:var(--headfg);border-radius:6px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.head h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px}
+.slicers{display:flex;gap:8px;flex-wrap:wrap}
+.slicer{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:5px 10px;font-size:12px;color:var(--headfg)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs button{font:600 13px var(--font);border:1px solid var(--line);background:var(--tile);color:var(--muted);padding:8px 14px;border-radius:4px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.tile{background:var(--tile);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.tile h3{margin:0;font-size:13px;font-weight:600}
+.kpi{grid-column:span 2;align-items:flex-start}
+.kpi .v{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent)}
+.kpi .l{font-size:12px;color:var(--muted)}
+.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s3{grid-column:span 3}
+.cv{position:relative;height:250px}
+.insight{font-size:12.5px;color:var(--fg);line-height:1.5}
+.insight b{color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600}
+td.n{text-align:right}
+.bar{display:inline-block;height:9px;background:var(--accent);border-radius:2px;vertical-align:middle;margin-right:6px;opacity:.75}
+.tblwrap{overflow-x:auto}
+@media (max-width:900px){.kpi{grid-column:span 4}.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}}
+@media (max-width:480px){.kpi{grid-column:span 6}}
+</style>
+
+<div class="wrap">
+  <p class="note">Preview of the 3 Power BI pages, built with your real numbers (2008–2024). It shows the layout from the Phase 5 guide; your Power BI version will look similar.</p>
+  <div class="head">
+    <h1>IPL Analytics Dashboard 2008–2024</h1>
+    <div class="slicers"><span class="slicer">Season: All ▾</span><span class="slicer">Team: All ▾</span><span class="slicer">Player: All ▾</span></div>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="t1" aria-selected="true" data-p="p1">1 · IPL Overview</button>
+    <button role="tab" id="t2" aria-selected="false" data-p="p2">2 · Player Performance</button>
+    <button role="tab" id="t3" aria-selected="false" data-p="p3">3 · Match Analysis</button>
+  </div>
+
+  <section id="p1" class="grid">
+    <div class="tile kpi"><span class="v">1,095</span><span class="l">Matches</span></div>
+    <div class="tile kpi"><span class="v">17</span><span class="l">Seasons</span></div>
+    <div class="tile kpi"><span class="v">15</span><span class="l">Teams</span></div>
+    <div class="tile kpi"><span class="v">347,470</span><span class="l">Total runs</span></div>
+    <div class="tile kpi"><span class="v">13,036</span><span class="l">Sixes</span></div>
+    <div class="tile kpi"><span class="v">287</span><span class="l">Highest team total</span></div>
+    <div class="tile s7"><h3>Runs per Season</h3><div class="cv"><canvas id="c_runs"></canvas></div></div>
+    <div class="tile s5"><h3>IPL Titles by Team</h3><div class="cv"><canvas id="c_titles"></canvas></div></div>
+    <div class="tile s5"><h3>Team Performance</h3><div class="tblwrap"><table id="teamtbl"></table></div></div>
+    <div class="tile s4"><h3>Toss Decision</h3><div class="cv"><canvas id="c_toss"></canvas></div></div>
+    <div class="tile s3"><h3>Key Insights</h3><p class="insight"><b>CSK</b> have the best win % (58.0%). <b>MI</b> have the most wins (144).<br><br>CSK and MI won <b>10 of 17</b> titles.<br><br>Scoring jumped in <b>2023–24</b> (25,971 runs in 2024).</p></div>
+  </section>
+
+  <section id="p2" class="grid" hidden>
+    <div class="tile kpi"><span class="v">8,004</span><span class="l">Runs · V Kohli</span></div>
+    <div class="tile kpi"><span class="v">131.97</span><span class="l">Strike rate</span></div>
+    <div class="tile kpi"><span class="v">38.67</span><span class="l">Average</span></div>
+    <div class="tile kpi"><span class="v">113</span><span class="l">Highest score</span></div>
+    <div class="tile kpi"><span class="v">8 / 55</span><span class="l">100s / 50s</span></div>
+    <div class="tile kpi"><span class="v">273</span><span class="l">Sixes</span></div>
+    <div class="tile s6"><h3>Top 10 Run Scorers</h3><div class="cv"><canvas id="c_bat"></canvas></div></div>
+    <div class="tile s6"><h3>Top 10 Wicket Takers</h3><div class="cv"><canvas id="c_bowl"></canvas></div></div>
+    <div class="tile s7"><h3>Strike Rate vs Runs (500+ balls)</h3><div class="cv"><canvas id="c_scatter"></canvas></div></div>
+    <div class="tile s5"><h3>Best Economy (1,000+ balls)</h3><div class="tblwrap"><table id="econtbl"></table></div></div>
+  </section>
+
+  <section id="p3" class="grid" hidden>
+    <div class="tile s3"><h3>Toss Win %</h3><div class="cv" style="height:160px"><canvas id="g_toss"></canvas></div><p class="insight">Target line 50%: the toss barely matters.</p></div>
+    <div class="tile s3"><h3>Chasing Win %</h3><div class="cv" style="height:160px"><canvas id="g_chase"></canvas></div><p class="insight">Chasing teams win more often.</p></div>
+    <div class="tile s6"><h3>Bat vs Field Decision by Season</h3><div class="cv"><canvas id="c_decision"></canvas></div></div>
+    <div class="tile s4"><h3>Win Type</h3><div class="cv"><canvas id="c_wintype"></canvas></div></div>
+    <div class="tile s4"><h3>Run Rate by Phase</h3><div class="cv"><canvas id="c_phase"></canvas></div></div>
+    <div class="tile s4"><h3>Key Insights</h3><p class="insight">Choosing to <b>field</b> after winning the toss wins <b>53.9%</b>, choosing to bat <b>45.4%</b>.<br><br>Death overs: <b>9.96</b> runs per over, a wicket every 11.8 balls.<br><br>Finals: 9 won batting first, 8 chasing.</p></div>
+    <div class="tile s8" style="grid-column:span 12"><h3>Top Venues: Matches and Chasing Win %</h3><div class="cv"><canvas id="c_venue"></canvas></div></div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C={a:css('--accent'),b:css('--accent2'),g:css('--grey'),fg:css('--fg'),m:css('--muted'),l:css('--line')};
+if(window.Chart){Chart.defaults.font.family="Inter,system-ui,sans-serif";Chart.defaults.font.size=11;Chart.defaults.color=C.m;Chart.defaults.borderColor=C.l;Chart.defaults.maintainAspectRatio=false;Chart.defaults.animation=false;Chart.defaults.plugins.legend.labels.boxWidth=10;}
+const seasons=[2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+const runs=[17937,16320,18864,21154,22453,22541,18909,18332,18862,18769,19901,19400,19352,18622,24395,25688,25971];
+const teams=[["Mumbai Indians",261,144,55.2],["Chennai Super Kings",238,138,58.0],["Kolkata Knight Riders",251,131,52.2],["Royal Challengers Bengaluru",255,123,48.2],["Delhi Capitals",252,115,45.6],["Punjab Kings",246,112,45.5],["Rajasthan Royals",221,112,50.7],["Sunrisers Hyderabad",182,88,48.4],["Gujarat Titans",45,28,62.2],["Lucknow Super Giants",44,24,54.5]];
+document.getElementById('teamtbl').innerHTML='<tr><th>Team</th><th>Played</th><th>Won</th><th>Win %</th></tr>'+teams.map(t=>`<tr><td>${t[0]}</td><td class="n">${t[1]}</td><td class="n">${t[2]}</td><td><span class="bar" style="width:${(t[3]-20)*1.2}px"></span>${t[3].toFixed(1)}%</td></tr>`).join('');
+const econ=[["M Muralitharan",254.0,6.68],["SP Narine",679.2,6.73],["Rashid Khan",476.5,6.82],["DW Steyn",362.7,6.92],["Harbhajan Singh",569.3,7.08],["R Ashwin",754.0,7.12],["SL Malinga",471.3,7.14],["M Kartik",191.5,7.25]];
+document.getElementById('econtbl').innerHTML='<tr><th>Bowler</th><th>Overs</th><th>Economy</th></tr>'+econ.map(e=>`<tr><td>${e[0]}</td><td class="n">${e[1].toFixed(1)}</td><td class="n">${e[2].toFixed(2)}</td></tr>`).join('');
+
+const made={};
+function hbar(id,labels,data,color){return new Chart(document.getElementById(id),{type:'bar',data:{labels,datasets:[{data,backgroundColor:color,borderRadius:3}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:C.l}},y:{grid:{display:false}}}}});}
+const pages={
+ p1(){
+  new Chart(c_runs,{type:'line',data:{labels:seasons,datasets:[{data:runs,borderColor:C.a,backgroundColor:C.a+'22',fill:true,tension:.25,pointRadius:seasons.map(s=>s>=2023?5:2.5),pointBackgroundColor:C.a}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:C.l}},x:{grid:{display:false}}}}});
+  hbar('c_titles',['CSK','MI','KKR','RR','DEC','SRH','GT'],[5,5,3,1,1,1,1],[C.a,C.a,C.g,C.g,C.g,C.g,C.g]);
+  new Chart(c_toss,{type:'doughnut',data:{labels:['Field first','Bat first'],datasets:[{data:[704,391],backgroundColor:[C.a,C.g],borderColor:css('--tile')}]},options:{cutout:'60%',plugins:{legend:{position:'bottom'}}}});
+ },
+ p2(){
+  hbar('c_bat',['V Kohli','S Dhawan','RG Sharma','DA Warner','SK Raina','MS Dhoni','AB de Villiers','CH Gayle','RV Uthappa','KD Karthik'],[8004,6769,6628,6565,5528,5243,5162,4965,4952,4842],C.a);
+  hbar('c_bowl',['YS Chahal','PP Chawla','DJ Bravo','B Kumar','R Ashwin','SP Narine','A Mishra','SL Malinga','JJ Bumrah','RA Jadeja'],[205,192,183,181,180,180,174,170,165,160],C.b);
+  const pts=[["V Kohli",8004,131.97],["S Dhawan",6769,127.14],["RG Sharma",6628,131.14],["DA Warner",6565,139.77],["SK Raina",5528,136.73],["MS Dhoni",5243,137.54],["AB de Villiers",5162,151.69],["CH Gayle",4965,148.96],["AD Russell",2484,174.93],["GJ Maxwell",2771,156.73],["V Sehwag",2728,155.44],["N Pooran",1769,162.29],["SP Narine",1534,165.84]];
+  new Chart(c_scatter,{type:'scatter',data:{datasets:[{data:pts.map(p=>({x:p[1],y:p[2],n:p[0]})),backgroundColor:pts.map(p=>p[0]==='V Kohli'||p[0]==='AD Russell'?C.a:C.g),pointRadius:6}]},options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw.n}: ${c.raw.x} runs, SR ${c.raw.y}`}}},scales:{x:{title:{display:true,text:'Runs'},grid:{color:C.l}},y:{title:{display:true,text:'Strike rate'},grid:{color:C.l}}}},plugins:[{id:'lbl',afterDatasetsDraw(ch){const ctx=ch.ctx;ctx.save();ctx.fillStyle=C.fg;ctx.font='11px Inter,sans-serif';ch.getDatasetMeta(0).data.forEach((pt,i)=>{const n=pts[i][0];if(['V Kohli','AD Russell','AB de Villiers','SP Narine','S Dhawan'].includes(n))ctx.fillText(n,pt.x+8,pt.y+4);});ctx.restore();}}]});
+ },
+ p3(){
+  const gauge=(el,v)=>new Chart(el,{type:'doughnut',data:{datasets:[{data:[v,100-v],backgroundColor:[C.a,C.l],borderWidth:0}]},options:{rotation:-90,circumference:180,cutout:'70%',plugins:{legend:{display:false},tooltip:{enabled:false}}},plugins:[{id:'t',afterDraw(ch){const {ctx,chartArea:a}=ch;ctx.save();ctx.fillStyle=C.fg;ctx.font='700 24px Inter,sans-serif';ctx.textAlign='center';ctx.fillText(v.toFixed(1)+'%',(a.left+a.right)/2,a.bottom-8);const cx=(a.left+a.right)/2,cy=a.bottom,r=Math.min(a.width/2,a.height);ctx.strokeStyle=C.b;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,cy-r);ctx.lineTo(cx,cy-r*0.62);ctx.stroke();ctx.restore();}}]});
+  gauge(g_toss,50.8);gauge(g_chase,54.3);
+  const field=[55,39,35,66,50,41,68,58,82,81,83,83,55,73,80,72,73];
+  new Chart(c_decision,{type:'bar',data:{labels:seasons,datasets:[{label:'Field',data:field,backgroundColor:C.a},{label:'Bat',data:field.map(f=>100-f),backgroundColor:C.g}]},options:{plugins:{legend:{position:'bottom'}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,max:100,ticks:{callback:v=>v+'%'},grid:{color:C.l}}}}});
+  new Chart(c_wintype,{type:'doughnut',data:{labels:['Won chasing','Won batting first','Tie','No result'],datasets:[{data:[578,498,14,5],backgroundColor:[C.a,C.g,C.b,C.l],borderColor:css('--tile')}]},options:{cutout:'60%',plugins:{legend:{position:'bottom'}}}});
+  new Chart(c_phase,{type:'bar',data:{labels:['Powerplay (1–6)','Middle (7–15)','Death (16–20)'],datasets:[{data:[7.85,7.79,9.96],backgroundColor:[C.g,C.g,C.a],borderRadius:3}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,title:{display:true,text:'Runs per over'},grid:{color:C.l}},x:{grid:{display:false}}}}});
+  const v=[["Wankhede",117,54.7],["Eden Gardens",93,59.1],["M Chinnaswamy",90,54.4],["Arun Jaitley",88,51.1],["MA Chidambaram",83,43.4],["Rajiv Gandhi Intl",76,55.3],["PCA Mohali",61,55.7],["Sawai Mansingh",57,64.9],["MCA Pune",51,45.1],["Dubai Intl",43,51.2]];
+  new Chart(c_venue,{data:{labels:v.map(x=>x[0]),datasets:[{type:'bar',label:'Matches',data:v.map(x=>x[1]),backgroundColor:C.g,yAxisID:'y',order:2},{type:'line',label:'Chasing win %',data:v.map(x=>x[2]),borderColor:C.a,backgroundColor:C.a,yAxisID:'y1',order:1}]},options:{plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,grid:{color:C.l},title:{display:true,text:'Matches'}},y1:{position:'right',min:30,max:70,grid:{display:false},ticks:{callback:x=>x+'%'}},x:{grid:{display:false}}}}});
+ }
+};
+function show(p){document.querySelectorAll('section.grid').forEach(s=>s.hidden=s.id!==p);document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));if(window.Chart&&!made[p]){made[p]=1;pages[p]();}}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.p)));
+show(['p1','p2','p3'].includes(location.hash.slice(1))?location.hash.slice(1):'p1');
+window.scrollTo(0,0);setTimeout(()=>window.scrollTo(0,0),50);
+</script>
+</html>
