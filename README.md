@@ -6,6 +6,21 @@ An analytics system that studies Indian Premier League (IPL) data from 2008 to 2
 
 ---
 
+## Dashboard Preview
+
+> Preview of the planned layout, built with the project's real 2008–2024 numbers ([dashboard_preview.html](powerbi/dashboard_preview.html)).
+
+**Page 1 – IPL Overview**
+![IPL Overview](powerbi/screenshots/preview_page1_overview.png)
+
+**Page 2 – Player Performance**
+![Player Performance](powerbi/screenshots/preview_page2_players.png)
+
+**Page 3 – Match Analysis**
+![Match Analysis](powerbi/screenshots/preview_page3_matches.png)
+
+---
+
 ## Tech Stack
 
 | Layer | Tool | Purpose |
