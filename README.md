@@ -93,7 +93,7 @@ To build it yourself, follow [docs/phase5_powerbi.md](docs/phase5_powerbi.md).
 - [x] Phase 3 – Python Data Cleaning & EDA ([docs/phase3_data_cleaning.md](docs/phase3_data_cleaning.md))
 - [x] Phase 4 – MySQL Database & SQL Queries ([docs/phase4_mysql.md](docs/phase4_mysql.md))
 - [x] Phase 5 – Power BI Dashboard guide ([docs/phase5_powerbi.md](docs/phase5_powerbi.md)); `.pbix` to be added after building
-- [ ] Phase 6 – Insights
+- [x] Phase 6 – Insights ([docs/phase6_insights.md](docs/phase6_insights.md))
 - [ ] Phase 7 – Project Report
 - [ ] Phase 8 – Interview Preparation
 
